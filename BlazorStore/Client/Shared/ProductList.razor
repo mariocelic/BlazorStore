@@ -1,4 +1,6 @@
-﻿<ul class="list-unstyled">
+﻿@inject HttpClient Http;
+
+<ul class="list-unstyled">
     @foreach (var product in Products)
     {
         <li class="oi-media my-4">
@@ -19,31 +21,15 @@
 </ul>
 
 @code {
-    private static List<Product> Products = new List<Product>
+    private static List<Product> Products = new List<Product>();
+
+    protected override async Task OnInitializedAsync()
     {
-        new Product
+        var result = await Http.GetFromJsonAsync<List<Product>>("api/Product");
+
+        if (result != null) 
         {
-            Id = 1,
-            Title = "Buzz",
-            Description = "A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.",
-            ImageUrl = "https://images.punkapi.com/v2/keg.png",
-            Price = 6.99m
-        },
-         new Product
-        {
-            Id = 2,
-            Title = "Trashy Blonde",
-            Description = "A titillating, neurotic, peroxide punk of a Pale Ale. Combining attitude, style, substance, and a little bit of low self esteem for good measure; what would your mother say? The seductive lure of the sassy passion fruit hop proves too much to resist. All that is even before we get onto the fact that there are no additives, preservatives, pasteurization or strings attached. All wrapped up with the customary BrewDog bite and imaginative twist.",
-            ImageUrl = "https://images.punkapi.com/v2/2.png",
-            Price = 7.99m
-        },
-         new Product
-        {
-            Id = 3,
-            Title = "Berliner Weisse With Yuzu - B-Sides",
-            Description = "Japanese citrus fruit intensifies the sour nature of this German classic.",
-            ImageUrl = "https://images.punkapi.com/v2/4.png",
-            Price = 9.99m
+            Products = result;
         }
-    };
+    }
 }
