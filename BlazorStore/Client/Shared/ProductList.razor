@@ -1,0 +1,49 @@
+﻿<ul class="list-unstyled">
+    @foreach (var product in Products)
+    {
+        <li class="oi-media-pause my-3">
+            <div class="media-img-wrapper mr-2">
+                <a href="#">
+                    <img class="media-img" src="@product.ImageUrl" alt="@product.Title" />
+                </a>
+            </div>
+            <div class="media-body">
+                <a href="#">
+                    <h4 class="mb-0">@product.Title</h4>
+                </a>
+                <p>@product.Description</p>
+                <h5 class="price">€@product.Price</h5>
+            </div>
+        </li>
+    }
+</ul>
+
+@code {
+    private static List<Product> Products = new List<Product>
+    {
+        new Product
+        {
+            Id = 1,
+            Title = "Buzz",
+            Description = "A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.",
+            ImageUrl = "https://images.punkapi.com/v2/keg.png",
+            Price = 6.99m
+        },
+         new Product
+        {
+            Id = 2,
+            Title = "Trashy Blonde",
+            Description = "A titillating, neurotic, peroxide punk of a Pale Ale. Combining attitude, style, substance, and a little bit of low self esteem for good measure; what would your mother say? The seductive lure of the sassy passion fruit hop proves too much to resist. All that is even before we get onto the fact that there are no additives, preservatives, pasteurization or strings attached. All wrapped up with the customary BrewDog bite and imaginative twist.",
+            ImageUrl = "https://images.punkapi.com/v2/2.png",
+            Price = 7.99m
+        },
+         new Product
+        {
+            Id = 3,
+            Title = "Berliner Weisse With Yuzu - B-Sides",
+            Description = "Japanese citrus fruit intensifies the sour nature of this German classic.",
+            ImageUrl = "https://images.punkapi.com/v2/4.png",
+            Price = 9.99m
+        }
+    };
+}
