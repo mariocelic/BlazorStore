@@ -3,6 +3,7 @@ using BlazorStore.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorStore.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220825092456_ChangeSomeProducts")]
+    partial class ChangeSomeProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,7 +156,7 @@ namespace BlazorStore.Server.Migrations
                             Id = 7,
                             CategoryId = 2,
                             Description = "Although best known for its world-class white wines, this delicious Rouleau red wine should not be missed. The fruits are cleaned from the fruits and vinified in wood for 12-15 months. Classic Auxey-Duresses wine: aromatic, brilliant, filled with notes of crunchy red fruits, cranberries and eret spices.\r\n\r\nAlthough best known for its world-class white wines, this delicious Rouleau red wine should not be missed. The fruits are cleaned from the fruits and vinified in wood for 12-15 months. Classic Auxey-Duresses wine: aromatic, brilliant, filled with notes of crunchy red fruits, cranberries and eret spices.\r\n\r\nAuxey-Duresses 1er Cru Rouge 2017 is a red wine produced in Burgundy, France by Domaine Roulot. It has a critic score of 77 out of 100 based on an aggregation of ratings from our partner sites. This 2017 vintage is available in 750ml volume.",
-                            ImageUrl = "https://images.punkapi.com/v2/12.png",
+                            ImageUrl = "https://images.punkapi.com/v2/11.png",
                             Price = 24.99m,
                             Title = "Domaine Roulot Auxey-Duresses 1er Cru Rouge 2017"
                         },
