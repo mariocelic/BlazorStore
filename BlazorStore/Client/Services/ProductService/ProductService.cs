@@ -7,6 +7,8 @@ namespace BlazorStore.Client.Services.ProductService
     {
         private readonly HttpClient _client;
 
+        public event Action ProductsChanged;
+        
         public ProductService(HttpClient client)
         {
             _client = client;
@@ -20,14 +22,18 @@ namespace BlazorStore.Client.Services.ProductService
             return result;
         }
 
-        public async Task GetProducts()
+        public async Task GetProducts(string? categoryUrl = null)
         {
-            var result = await _client.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product");
+            var result = categoryUrl == null ?
+                await _client.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product") :
+                await _client.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/category/{categoryUrl}");
 
             if (result != null && result.Data != null)
             {
                 Products = result.Data;
             }
+
+            ProductsChanged.Invoke();
         }
     }
 }
